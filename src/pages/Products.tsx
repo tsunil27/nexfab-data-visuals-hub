@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, BarChart3, Brain, TrendingUp, Zap, Database, Shield, Lightbulb } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { ArrowRight, BarChart3, Brain, TrendingUp, Zap, Database, Shield, Lightbulb, MessageSquare, Eye, Layers, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -91,6 +92,185 @@ const Products = () => {
               >
                 Watch Demo
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* What is SuperLens Section */}
+        <section className="py-20 bg-gradient-to-br from-purple-950/60 to-black/80 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-purple-100 mb-6">What is SuperLens?</h2>
+              <p className="text-xl text-purple-300 max-w-4xl mx-auto">
+                SuperLens is a decision intelligence platform that enables data-driven insights through AI-powered analytics
+              </p>
+            </div>
+
+            {/* Platform Carousel */}
+            <div className="mb-16">
+              <Carousel className="w-full max-w-5xl mx-auto">
+                <CarouselContent>
+                  <CarouselItem>
+                    <div className="p-1">
+                      <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
+                        <CardContent className="flex flex-col items-center justify-center p-8">
+                          <div className="w-full h-80 bg-gradient-to-br from-purple-900/40 to-black/60 rounded-lg mb-6 flex items-center justify-center border border-purple-500/30">
+                            <div className="text-center">
+                              <MessageSquare className="h-16 w-16 text-purple-400 mx-auto mb-4" />
+                              <h3 className="text-2xl font-bold text-purple-200 mb-4">Natural Language Conversations</h3>
+                              <p className="text-purple-300 max-w-md">
+                                Ask questions like: "Show me the revenue trend this year" and get instant insights without complex queries.
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="p-1">
+                      <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
+                        <CardContent className="flex flex-col items-center justify-center p-8">
+                          <div className="w-full h-80 bg-gradient-to-br from-purple-900/40 to-black/60 rounded-lg mb-6 flex items-center justify-center border border-purple-500/30">
+                            <div className="text-center">
+                              <div className="grid grid-cols-3 gap-4 mb-6">
+                                <div className="bg-purple-600/20 p-4 rounded-lg border border-purple-400/30">
+                                  <Database className="h-8 w-8 text-purple-400 mx-auto mb-2" />
+                                  <p className="text-xs text-purple-300">Data Overload</p>
+                                </div>
+                                <div className="bg-purple-600/20 p-4 rounded-lg border border-purple-400/30">
+                                  <Shield className="h-8 w-8 text-purple-400 mx-auto mb-2" />
+                                  <p className="text-xs text-purple-300">Complex Analytics</p>
+                                </div>
+                                <div className="bg-purple-600/20 p-4 rounded-lg border border-purple-400/30">
+                                  <TrendingUp className="h-8 w-8 text-purple-400 mx-auto mb-2" />
+                                  <p className="text-xs text-purple-300">Scale Issues</p>
+                                </div>
+                              </div>
+                              <h3 className="text-2xl font-bold text-purple-200 mb-2">Problem</h3>
+                              <p className="text-purple-300">Organizations struggle with data complexity and decision-making speed</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="p-1">
+                      <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
+                        <CardContent className="flex flex-col items-center justify-center p-8">
+                          <div className="w-full h-80 bg-gradient-to-br from-purple-900/40 to-black/60 rounded-lg mb-6 flex items-center justify-center border border-purple-500/30">
+                            <div className="text-center">
+                              <div className="space-y-3 mb-6">
+                                <div className="bg-purple-600/30 p-3 rounded-lg border border-purple-400/50 flex items-center">
+                                  <Brain className="h-6 w-6 text-purple-400 mr-3" />
+                                  <span className="text-purple-200 text-sm">Conversational Language Understanding</span>
+                                </div>
+                                <div className="bg-purple-600/30 p-3 rounded-lg border border-purple-400/50 flex items-center">
+                                  <Layers className="h-6 w-6 text-purple-400 mr-3" />
+                                  <span className="text-purple-200 text-sm">Domain Context Knowledge</span>
+                                </div>
+                                <div className="bg-purple-600/30 p-3 rounded-lg border border-purple-400/50 flex items-center">
+                                  <Database className="h-6 w-6 text-purple-400 mr-3" />
+                                  <span className="text-purple-200 text-sm">SQL Generation</span>
+                                </div>
+                                <div className="bg-purple-600/30 p-3 rounded-lg border border-purple-400/50 flex items-center">
+                                  <BarChart3 className="h-6 w-6 text-purple-400 mr-3" />
+                                  <span className="text-purple-200 text-sm">Insights & Storytelling</span>
+                                </div>
+                                <div className="bg-purple-600/30 p-3 rounded-lg border border-purple-400/50 flex items-center">
+                                  <Settings className="h-6 w-6 text-purple-400 mr-3" />
+                                  <span className="text-purple-200 text-sm">Fine-Tuning</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                  <CarouselItem>
+                    <div className="p-1">
+                      <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
+                        <CardContent className="flex flex-col items-center justify-center p-8">
+                          <div className="w-full h-80 bg-gradient-to-br from-purple-900/40 to-black/60 rounded-lg mb-6 flex items-center justify-center border border-purple-500/30">
+                            <div className="text-center">
+                              <Eye className="h-16 w-16 text-purple-400 mx-auto mb-4" />
+                              <h3 className="text-2xl font-bold text-purple-200 mb-4">SuperLens is your personal AI data analyst</h3>
+                              <p className="text-purple-300 max-w-md">
+                                Transform complex data into clear insights with our AI-powered analytics platform designed for everyone.
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                </CarouselContent>
+                <CarouselPrevious className="bg-purple-900/40 border-purple-500/30 text-purple-300 hover:bg-purple-800/60" />
+                <CarouselNext className="bg-purple-900/40 border-purple-500/30 text-purple-300 hover:bg-purple-800/60" />
+              </Carousel>
+            </div>
+
+            {/* Streamline Decision-Making Section */}
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-purple-100 mb-6">Streamline Decision-Making with AI</h3>
+              <p className="text-lg text-purple-300 max-w-4xl mx-auto mb-12">
+                SuperLens combines the power of artificial intelligence with business intelligence to help teams make data-backed decisions faster and with greater accuracy.
+              </p>
+            </div>
+
+            {/* Features Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50">
+                <CardContent className="p-6">
+                  <MessageSquare className="h-12 w-12 text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
+                  <h4 className="text-xl font-bold text-purple-200 mb-3">Natural Language Processing</h4>
+                  <p className="text-purple-300">
+                    Query complex data without SQL knowledge. Ask questions in plain English and get instant insights.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50">
+                <CardContent className="p-6">
+                  <Brain className="h-12 w-12 text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
+                  <h4 className="text-xl font-bold text-purple-200 mb-3">Automated Insights</h4>
+                  <p className="text-purple-300">
+                    AI automatically identifies patterns and anomalies in your data, surfacing insights you might miss.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50">
+                <CardContent className="p-6">
+                  <BarChart3 className="h-12 w-12 text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
+                  <h4 className="text-xl font-bold text-purple-200 mb-3">Advanced Visualization</h4>
+                  <p className="text-purple-300">
+                    Make data interpretation simple with intuitive charts and interactive dashboards.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50">
+                <CardContent className="p-6">
+                  <Lightbulb className="h-12 w-12 text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
+                  <h4 className="text-xl font-bold text-purple-200 mb-3">Data Storytelling</h4>
+                  <p className="text-purple-300">
+                    Transform complex analytics into compelling narratives that drive action.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50">
+                <CardContent className="p-6">
+                  <Database className="h-12 w-12 text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
+                  <h4 className="text-xl font-bold text-purple-200 mb-3">Data Platform Integrations</h4>
+                  <p className="text-purple-300">
+                    Connect seamlessly from CSV files through to enterprise platforms like Snowflake.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
