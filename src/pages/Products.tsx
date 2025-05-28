@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CarouselApi } from "@/components/ui/carousel";
 import { ArrowRight, BarChart3, Brain, TrendingUp, Zap, Database, Shield, Lightbulb, MessageSquare, Eye, Layers, Settings } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import useEmblaCarousel from 'embla-carousel-react';
 
 const Products = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [api, setApi] = useState<CarouselApi>();
 
   useEffect(() => {
     setIsVisible(true);
@@ -16,14 +15,16 @@ const Products = () => {
 
   // Auto-advance carousel every 3 seconds
   useEffect(() => {
-    if (emblaApi) {
-      const interval = setInterval(() => {
-        emblaApi.scrollNext();
-      }, 3000);
-
-      return () => clearInterval(interval);
+    if (!api) {
+      return;
     }
-  }, [emblaApi]);
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [api]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black">
@@ -122,8 +123,25 @@ const Products = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
               {/* Carousel */}
               <div>
-                <Carousel ref={emblaRef} className="w-full max-w-2xl mx-auto">
+                <Carousel setApi={setApi} opts={{ loop: true }} className="w-full max-w-2xl mx-auto">
                   <CarouselContent>
+                    <CarouselItem>
+                      <div className="p-1">
+                        <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
+                          <CardContent className="flex flex-col items-center justify-center p-8">
+                            <div className="w-full h-80 bg-gradient-to-br from-purple-900/40 to-black/60 rounded-lg mb-6 flex items-center justify-center border border-purple-500/30">
+                              <div className="text-center">
+                                <Eye className="h-16 w-16 text-purple-400 mx-auto mb-4" />
+                                <h3 className="text-2xl font-bold text-purple-200 mb-4">SuperLens is your personal AI data analyst</h3>
+                                <p className="text-purple-300 max-w-md">
+                                  Transform complex data into clear insights with our AI-powered analytics platform designed for everyone.
+                                </p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    </CarouselItem>
                     <CarouselItem>
                       <div className="p-1">
                         <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
@@ -147,22 +165,25 @@ const Products = () => {
                           <CardContent className="flex flex-col items-center justify-center p-8">
                             <div className="w-full h-80 bg-gradient-to-br from-purple-900/40 to-black/60 rounded-lg mb-6 flex items-center justify-center border border-purple-500/30">
                               <div className="text-center">
-                                <div className="grid grid-cols-3 gap-4 mb-6">
+                                <h3 className="text-2xl font-bold text-purple-200 mb-6">Problem</h3>
+                                <p className="text-purple-300 mb-6">Organizations struggle with data complexity and decision-making speed</p>
+                                <div className="grid grid-cols-1 gap-4">
                                   <div className="bg-purple-600/20 p-4 rounded-lg border border-purple-400/30">
                                     <Database className="h-8 w-8 text-purple-400 mx-auto mb-2" />
-                                    <p className="text-xs text-purple-300">Data Overload</p>
+                                    <p className="text-sm font-semibold text-purple-200 mb-1">Data Overload</p>
+                                    <p className="text-xs text-purple-300">Organizations utilize only about 1/3rd of available data for decision making</p>
                                   </div>
                                   <div className="bg-purple-600/20 p-4 rounded-lg border border-purple-400/30">
                                     <Shield className="h-8 w-8 text-purple-400 mx-auto mb-2" />
-                                    <p className="text-xs text-purple-300">Complex Analytics</p>
+                                    <p className="text-sm font-semibold text-purple-200 mb-1">How painful?</p>
+                                    <p className="text-xs text-purple-300">2/3 execs report lacking timely insights. 2/3 dashboards unused by non-technical users</p>
                                   </div>
                                   <div className="bg-purple-600/20 p-4 rounded-lg border border-purple-400/30">
                                     <TrendingUp className="h-8 w-8 text-purple-400 mx-auto mb-2" />
-                                    <p className="text-xs text-purple-300">Scale Issues</p>
+                                    <p className="text-sm font-semibold text-purple-200 mb-1">At what scale?</p>
+                                    <p className="text-xs text-purple-300">Slow data access costs mid-to-large enterprises between $1.5M-$5M annually</p>
                                   </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-purple-200 mb-2">Problem</h3>
-                                <p className="text-purple-300">Organizations struggle with data complexity and decision-making speed</p>
                               </div>
                             </div>
                           </CardContent>
@@ -203,23 +224,6 @@ const Products = () => {
                         </Card>
                       </div>
                     </CarouselItem>
-                    <CarouselItem>
-                      <div className="p-1">
-                        <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
-                          <CardContent className="flex flex-col items-center justify-center p-8">
-                            <div className="w-full h-80 bg-gradient-to-br from-purple-900/40 to-black/60 rounded-lg mb-6 flex items-center justify-center border border-purple-500/30">
-                              <div className="text-center">
-                                <Eye className="h-16 w-16 text-purple-400 mx-auto mb-4" />
-                                <h3 className="text-2xl font-bold text-purple-200 mb-4">SuperLens is your personal AI data analyst</h3>
-                                <p className="text-purple-300 max-w-md">
-                                  Transform complex data into clear insights with our AI-powered analytics platform designed for everyone.
-                                </p>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </CarouselItem>
                   </CarouselContent>
                   <CarouselPrevious className="bg-purple-900/40 border-purple-500/30 text-purple-300 hover:bg-purple-800/60" />
                   <CarouselNext className="bg-purple-900/40 border-purple-500/30 text-purple-300 hover:bg-purple-800/60" />
@@ -240,9 +244,9 @@ const Products = () => {
                   <div className="flex items-start space-x-4">
                     <MessageSquare className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="text-lg font-bold text-purple-200 mb-2">Natural Language Processing</h4>
+                      <h4 className="text-lg font-bold text-purple-200 mb-2">Natural language processing</h4>
                       <p className="text-purple-300">
-                        Query complex data without SQL knowledge. Ask questions in plain English and get instant insights.
+                        for querying complex data without SQL knowledge
                       </p>
                     </div>
                   </div>
@@ -250,9 +254,9 @@ const Products = () => {
                   <div className="flex items-start space-x-4">
                     <Brain className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="text-lg font-bold text-purple-200 mb-2">Automated Insights</h4>
+                      <h4 className="text-lg font-bold text-purple-200 mb-2">Automated insights</h4>
                       <p className="text-purple-300">
-                        AI automatically identifies patterns and anomalies in your data, surfacing insights you might miss.
+                        that identify patterns and anomalies in your data
                       </p>
                     </div>
                   </div>
@@ -260,9 +264,9 @@ const Products = () => {
                   <div className="flex items-start space-x-4">
                     <BarChart3 className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="text-lg font-bold text-purple-200 mb-2">Advanced Visualization</h4>
+                      <h4 className="text-lg font-bold text-purple-200 mb-2">Advanced visualization tools</h4>
                       <p className="text-purple-300">
-                        Make data interpretation simple with intuitive charts and interactive dashboards.
+                        that make data interpretation simple
                       </p>
                     </div>
                   </div>
@@ -270,9 +274,9 @@ const Products = () => {
                   <div className="flex items-start space-x-4">
                     <Lightbulb className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="text-lg font-bold text-purple-200 mb-2">Data Storytelling</h4>
+                      <h4 className="text-lg font-bold text-purple-200 mb-2">Data storytelling</h4>
                       <p className="text-purple-300">
-                        Transform complex analytics into compelling narratives that drive action.
+                        that transforms complex analytics into compelling narratives
                       </p>
                     </div>
                   </div>
@@ -280,9 +284,9 @@ const Products = () => {
                   <div className="flex items-start space-x-4">
                     <Database className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="text-lg font-bold text-purple-200 mb-2">Data Platform Integrations</h4>
+                      <h4 className="text-lg font-bold text-purple-200 mb-2">Data platform integrations</h4>
                       <p className="text-purple-300">
-                        Connect seamlessly from CSV files through to enterprise platforms like Snowflake.
+                        from CSV through to Snowflake
                       </p>
                     </div>
                   </div>
