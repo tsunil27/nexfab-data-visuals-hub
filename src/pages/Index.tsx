@@ -1,7 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Cloud, Code, Database, Users, ChevronRight, Zap } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ArrowRight, Cloud, Code, Database, Users, ChevronRight, Zap, TrendingUp, TrendingDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ClientLogos from "@/components/ClientLogos";
@@ -17,6 +17,37 @@ const Index = () => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const dashboardMetrics = [
+    {
+      title: "Total Users",
+      value: "24.5K",
+      change: 12,
+      isPositive: true,
+      period: "vs last period"
+    },
+    {
+      title: "Active Sessions", 
+      value: "1,429",
+      change: 8,
+      isPositive: true,
+      period: "vs last period"
+    },
+    {
+      title: "Avg. Session Time",
+      value: "4m 38s", 
+      change: 2,
+      isPositive: false,
+      period: "vs last period"
+    },
+    {
+      title: "Conversion Rate",
+      value: "3.2%",
+      change: 0.8,
+      isPositive: true,
+      period: "vs last period"
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black">
@@ -127,6 +158,73 @@ const Index = () => {
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* Interactive Dashboard Overview Section */}
+        <section id="dashboard" className="py-20 bg-gradient-to-br from-black/80 to-purple-950/60 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h3 className="text-4xl font-bold text-purple-100 mb-6">Interactive Dashboard Overview</h3>
+              <p className="text-xl text-purple-300 max-w-4xl mx-auto">
+                Monitor your Superlens.ai performance metrics in real-time with our interactive dashboard.
+              </p>
+            </div>
+
+            {/* Tab Navigation */}
+            <div className="flex justify-center mb-12">
+              <Tabs defaultValue="overview" className="w-full max-w-md">
+                <TabsList className="grid w-full grid-cols-3 bg-black/40 backdrop-blur-md border border-purple-500/20">
+                  <TabsTrigger 
+                    value="overview" 
+                    className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+                  >
+                    Overview
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="user-metrics" 
+                    className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+                  >
+                    User Metrics
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="performance" 
+                    className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
+                  >
+                    Performance
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+
+            {/* Metrics Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {dashboardMetrics.map((metric, index) => (
+                <Card 
+                  key={index}
+                  className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50"
+                >
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="text-sm font-medium text-purple-300 mb-2">{metric.title}</h4>
+                        <div className="text-3xl font-bold text-purple-100">{metric.value}</div>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        {metric.isPositive ? (
+                          <TrendingUp className="h-4 w-4 text-green-400" />
+                        ) : (
+                          <TrendingDown className="h-4 w-4 text-red-400" />
+                        )}
+                        <span className={`text-sm font-medium ${metric.isPositive ? 'text-green-400' : 'text-red-400'}`}>
+                          {metric.isPositive ? '↑' : '↓'} {metric.change}% {metric.period}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 
