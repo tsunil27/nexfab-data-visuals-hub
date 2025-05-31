@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Progress } from "@/components/ui/progress";
 import { ArrowRight, Cloud, Code, Database, Users, ChevronRight, Zap, TrendingUp, TrendingDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -47,6 +48,44 @@ const Index = () => {
       isPositive: true,
       period: "vs last period"
     }
+  ];
+
+  const userDemographics = {
+    ageRanges: [
+      { range: "18-24", percentage: 24 },
+      { range: "25-34", percentage: 38 },
+      { range: "35-44", percentage: 21 },
+      { range: "45+", percentage: 17 }
+    ],
+    topRegions: [
+      { region: "North America", percentage: 42 },
+      { region: "Europe", percentage: 28 },
+      { region: "Asia Pacific", percentage: 18 },
+      { region: "Latin America", percentage: 8 },
+      { region: "Other Regions", percentage: 4 }
+    ]
+  };
+
+  const userGrowthData = [
+    { month: "Jan", value: 65 },
+    { month: "Feb", value: 75 },
+    { month: "Mar", value: 85 },
+    { month: "Apr", value: 90 },
+    { month: "May", value: 95 },
+    { month: "Jun", value: 100 },
+    { month: "Jul", value: 85 }
+  ];
+
+  const performanceMetrics = [
+    { title: "API Response Time", value: "125ms", change: 18, isPositive: false, period: "vs last period" },
+    { title: "Success Rate", value: "99.8%", change: 0.2, isPositive: true, period: "vs last period" },
+    { title: "Error Rate", value: "0.2%", change: 0.1, isPositive: true, period: "vs last period" }
+  ];
+
+  const systemHealth = [
+    { name: "CPU Usage", percentage: 42, status: "Normal", color: "bg-green-500" },
+    { name: "Memory Usage", percentage: 68, status: "Normal", color: "bg-green-500" },
+    { name: "Disk Space", percentage: 86, status: "Warning", color: "bg-yellow-500" }
   ];
 
   return (
@@ -171,7 +210,7 @@ const Index = () => {
               </p>
             </div>
 
-            {/* Tab Navigation */}
+            {/* Interactive Tabs */}
             <div className="flex justify-center mb-12">
               <Tabs defaultValue="overview" className="w-full max-w-md">
                 <TabsList className="grid w-full grid-cols-3 bg-black/40 backdrop-blur-md border border-purple-500/20">
@@ -194,36 +233,156 @@ const Index = () => {
                     Performance
                   </TabsTrigger>
                 </TabsList>
-              </Tabs>
-            </div>
 
-            {/* Metrics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {dashboardMetrics.map((metric, index) => (
-                <Card 
-                  key={index}
-                  className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50"
-                >
-                  <CardContent className="p-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="text-sm font-medium text-purple-300 mb-2">{metric.title}</h4>
-                        <div className="text-3xl font-bold text-purple-100">{metric.value}</div>
+                {/* Overview Tab Content */}
+                <TabsContent value="overview" className="mt-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {dashboardMetrics.map((metric, index) => (
+                      <Card 
+                        key={index}
+                        className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50"
+                      >
+                        <CardContent className="p-6">
+                          <div className="space-y-4">
+                            <div>
+                              <h4 className="text-sm font-medium text-purple-300 mb-2">{metric.title}</h4>
+                              <div className="text-3xl font-bold text-purple-100">{metric.value}</div>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              {metric.isPositive ? (
+                                <TrendingUp className="h-4 w-4 text-green-400" />
+                              ) : (
+                                <TrendingDown className="h-4 w-4 text-red-400" />
+                              )}
+                              <span className={`text-sm font-medium ${metric.isPositive ? 'text-green-400' : 'text-red-400'}`}>
+                                {metric.isPositive ? '↑' : '↓'} {metric.change}% {metric.period}
+                              </span>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </TabsContent>
+
+                {/* User Metrics Tab Content */}
+                <TabsContent value="user-metrics" className="mt-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    {/* User Demographics */}
+                    <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
+                      <CardContent className="p-6">
+                        <h4 className="text-2xl font-bold text-purple-100 mb-6">User Demographics</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {/* Age Range */}
+                          <div>
+                            <h5 className="text-lg font-semibold text-purple-300 mb-4">Age Range</h5>
+                            <div className="space-y-3">
+                              {userDemographics.ageRanges.map((age, index) => (
+                                <div key={index} className="flex justify-between items-center">
+                                  <span className="text-purple-200">{age.range}</span>
+                                  <div className="flex items-center space-x-2">
+                                    <div className="w-16 h-2 bg-purple-900/40 rounded-full overflow-hidden">
+                                      <div 
+                                        className="h-full bg-purple-500 rounded-full transition-all duration-500"
+                                        style={{ width: `${age.percentage}%` }}
+                                      />
+                                    </div>
+                                    <span className="text-purple-300 text-sm">{age.percentage}%</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          {/* Top Regions */}
+                          <div>
+                            <h5 className="text-lg font-semibold text-purple-300 mb-4">Top Regions</h5>
+                            <div className="space-y-3">
+                              {userDemographics.topRegions.map((region, index) => (
+                                <div key={index} className="flex justify-between items-center">
+                                  <span className="text-purple-200">{region.region}</span>
+                                  <span className="text-purple-300 text-sm">{region.percentage}%</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+
+                    {/* User Growth Chart */}
+                    <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
+                      <CardContent className="p-6">
+                        <h4 className="text-2xl font-bold text-purple-100 mb-6">User Growth</h4>
+                        <div className="flex items-end justify-between h-48 space-x-2">
+                          {userGrowthData.map((data, index) => (
+                            <div key={index} className="flex flex-col items-center space-y-2 flex-1">
+                              <div 
+                                className="w-full bg-purple-500 rounded-t transition-all duration-500 hover:bg-purple-400"
+                                style={{ height: `${data.value}%` }}
+                              />
+                              <span className="text-purple-300 text-xs">{data.month}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </TabsContent>
+
+                {/* Performance Tab Content */}
+                <TabsContent value="performance" className="mt-8">
+                  {/* Performance Metrics */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    {performanceMetrics.map((metric, index) => (
+                      <Card 
+                        key={index}
+                        className="bg-black/40 backdrop-blur-md border border-purple-500/20"
+                      >
+                        <CardContent className="p-6">
+                          <h4 className="text-lg font-semibold text-purple-300 mb-2">{metric.title}</h4>
+                          <div className="text-3xl font-bold text-purple-100 mb-2">{metric.value}</div>
+                          <div className="flex items-center space-x-1">
+                            {metric.isPositive ? (
+                              <TrendingUp className="h-4 w-4 text-green-400" />
+                            ) : (
+                              <TrendingDown className="h-4 w-4 text-red-400" />
+                            )}
+                            <span className={`text-sm font-medium ${metric.isPositive ? 'text-green-400' : 'text-red-400'}`}>
+                              {metric.isPositive ? '↑' : '↓'} {metric.change}% {metric.period}
+                            </span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+
+                  {/* System Health */}
+                  <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
+                    <CardContent className="p-6">
+                      <h4 className="text-2xl font-bold text-purple-100 mb-6">System Health</h4>
+                      <div className="space-y-6">
+                        {systemHealth.map((system, index) => (
+                          <div key={index} className="space-y-2">
+                            <div className="flex justify-between items-center">
+                              <span className="text-purple-200 font-medium">{system.name}</span>
+                              <div className="flex items-center space-x-3">
+                                <span className={`text-sm font-medium ${system.status === 'Normal' ? 'text-green-400' : 'text-yellow-400'}`}>
+                                  {system.status}
+                                </span>
+                                <span className="text-purple-300 text-sm">{system.percentage}%</span>
+                              </div>
+                            </div>
+                            <Progress 
+                              value={system.percentage} 
+                              className="h-3 bg-purple-900/40"
+                            />
+                          </div>
+                        ))}
                       </div>
-                      <div className="flex items-center space-x-1">
-                        {metric.isPositive ? (
-                          <TrendingUp className="h-4 w-4 text-green-400" />
-                        ) : (
-                          <TrendingDown className="h-4 w-4 text-red-400" />
-                        )}
-                        <span className={`text-sm font-medium ${metric.isPositive ? 'text-green-400' : 'text-red-400'}`}>
-                          {metric.isPositive ? '↑' : '↓'} {metric.change}% {metric.period}
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
         </section>
@@ -294,10 +453,8 @@ const Index = () => {
               <h3 className="text-4xl font-bold text-purple-100 mb-6">Experience and Expertise</h3>
             </div>
             
-            {/* Client Logos Section */}
             <ClientLogos />
             
-            {/* Statistics Grid */}
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
               <div className="bg-black/40 backdrop-blur-md rounded-lg p-6 hover:bg-purple-900/20 transition-all duration-300 border border-purple-500/20 hover:border-purple-400/50">
                 <div className="text-4xl font-bold text-purple-200 mb-2">20+</div>
