@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -7,95 +6,133 @@ import { ArrowRight, Cloud, Code, Database, Users, ChevronRight, Zap, TrendingUp
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ClientLogos from "@/components/ClientLogos";
-
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     setIsVisible(true);
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
-  const dashboardMetrics = [
-    {
-      title: "Total Users",
-      value: "24.5K",
-      change: 12,
-      isPositive: true,
-      period: "vs last period"
-    },
-    {
-      title: "Active Sessions", 
-      value: "1,429",
-      change: 8,
-      isPositive: true,
-      period: "vs last period"
-    },
-    {
-      title: "Avg. Session Time",
-      value: "4m 38s", 
-      change: 2,
-      isPositive: false,
-      period: "vs last period"
-    },
-    {
-      title: "Conversion Rate",
-      value: "3.2%",
-      change: 0.8,
-      isPositive: true,
-      period: "vs last period"
-    }
-  ];
-
+  const dashboardMetrics = [{
+    title: "Total Users",
+    value: "24.5K",
+    change: 12,
+    isPositive: true,
+    period: "vs last period"
+  }, {
+    title: "Active Sessions",
+    value: "1,429",
+    change: 8,
+    isPositive: true,
+    period: "vs last period"
+  }, {
+    title: "Avg. Session Time",
+    value: "4m 38s",
+    change: 2,
+    isPositive: false,
+    period: "vs last period"
+  }, {
+    title: "Conversion Rate",
+    value: "3.2%",
+    change: 0.8,
+    isPositive: true,
+    period: "vs last period"
+  }];
   const userDemographics = {
-    ageRanges: [
-      { range: "18-24", percentage: 24 },
-      { range: "25-34", percentage: 38 },
-      { range: "35-44", percentage: 21 },
-      { range: "45+", percentage: 17 }
-    ],
-    topRegions: [
-      { region: "North America", percentage: 42 },
-      { region: "Europe", percentage: 28 },
-      { region: "Asia Pacific", percentage: 18 },
-      { region: "Latin America", percentage: 8 },
-      { region: "Other Regions", percentage: 4 }
-    ]
+    ageRanges: [{
+      range: "18-24",
+      percentage: 24
+    }, {
+      range: "25-34",
+      percentage: 38
+    }, {
+      range: "35-44",
+      percentage: 21
+    }, {
+      range: "45+",
+      percentage: 17
+    }],
+    topRegions: [{
+      region: "North America",
+      percentage: 42
+    }, {
+      region: "Europe",
+      percentage: 28
+    }, {
+      region: "Asia Pacific",
+      percentage: 18
+    }, {
+      region: "Latin America",
+      percentage: 8
+    }, {
+      region: "Other Regions",
+      percentage: 4
+    }]
   };
-
-  const userGrowthData = [
-    { month: "Jan", value: 65 },
-    { month: "Feb", value: 75 },
-    { month: "Mar", value: 85 },
-    { month: "Apr", value: 90 },
-    { month: "May", value: 95 },
-    { month: "Jun", value: 100 },
-    { month: "Jul", value: 85 }
-  ];
-
-  const performanceMetrics = [
-    { title: "API Response Time", value: "125ms", change: 18, isPositive: false, period: "vs last period" },
-    { title: "Success Rate", value: "99.8%", change: 0.2, isPositive: true, period: "vs last period" },
-    { title: "Error Rate", value: "0.2%", change: 0.1, isPositive: true, period: "vs last period" }
-  ];
-
-  const systemHealth = [
-    { name: "CPU Usage", percentage: 42, status: "Normal", color: "bg-green-500" },
-    { name: "Memory Usage", percentage: 68, status: "Normal", color: "bg-green-500" },
-    { name: "Disk Space", percentage: 86, status: "Warning", color: "bg-yellow-500" }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black">
+  const userGrowthData = [{
+    month: "Jan",
+    value: 65
+  }, {
+    month: "Feb",
+    value: 75
+  }, {
+    month: "Mar",
+    value: 85
+  }, {
+    month: "Apr",
+    value: 90
+  }, {
+    month: "May",
+    value: 95
+  }, {
+    month: "Jun",
+    value: 100
+  }, {
+    month: "Jul",
+    value: 85
+  }];
+  const performanceMetrics = [{
+    title: "API Response Time",
+    value: "125ms",
+    change: 18,
+    isPositive: false,
+    period: "vs last period"
+  }, {
+    title: "Success Rate",
+    value: "99.8%",
+    change: 0.2,
+    isPositive: true,
+    period: "vs last period"
+  }, {
+    title: "Error Rate",
+    value: "0.2%",
+    change: 0.1,
+    isPositive: true,
+    period: "vs last period"
+  }];
+  const systemHealth = [{
+    name: "CPU Usage",
+    percentage: 42,
+    status: "Normal",
+    color: "bg-green-500"
+  }, {
+    name: "Memory Usage",
+    percentage: 68,
+    status: "Normal",
+    color: "bg-green-500"
+  }, {
+    name: "Disk Space",
+    percentage: 86,
+    status: "Warning",
+    color: "bg-yellow-500"
+  }];
+  return <div className="min-h-screen bg-gradient-to-br from-black via-purple-950 to-black">
       {/* Skip to main content */}
-      <a 
-        href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-purple-600 text-white px-4 py-2 rounded-md z-50"
-      >
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-purple-600 text-white px-4 py-2 rounded-md z-50">
         Skip to Main Content
       </a>
 
@@ -108,34 +145,19 @@ const Index = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <Link 
-                  to="/"
-                  className="text-purple-200 hover:text-purple-300 transition-colors duration-200"
-                >
+                <Link to="/" className="text-purple-200 hover:text-purple-300 transition-colors duration-200">
                   Home
                 </Link>
-                <Link 
-                  to="/products"
-                  className="text-purple-200 hover:text-purple-300 transition-colors duration-200"
-                >
+                <Link to="/products" className="text-purple-200 hover:text-purple-300 transition-colors duration-200">
                   Products
                 </Link>
-                <button 
-                  onClick={() => scrollToSection('about')}
-                  className="text-purple-200 hover:text-purple-300 transition-colors duration-200"
-                >
+                <button onClick={() => scrollToSection('about')} className="text-purple-200 hover:text-purple-300 transition-colors duration-200">
                   About Us
                 </button>
-                <button 
-                  onClick={() => scrollToSection('contact')}
-                  className="text-purple-200 hover:text-purple-300 transition-colors duration-200"
-                >
+                <button onClick={() => scrollToSection('contact')} className="text-purple-200 hover:text-purple-300 transition-colors duration-200">
                   Contact
                 </button>
-                <Link 
-                  to="/products"
-                  className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105"
-                >
+                <Link to="/products" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105">
                   Get Started
                 </Link>
               </div>
@@ -160,11 +182,7 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-purple-300 mb-8 max-w-3xl mx-auto">
               Unlock the Power of Data & AI for Informed Business Decisions
             </p>
-            <Button 
-              onClick={() => scrollToSection('featured-product')}
-              size="lg" 
-              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105"
-            >
+            <Button onClick={() => scrollToSection('featured-product')} size="lg" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105">
               Discover More <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
@@ -188,10 +206,7 @@ const Index = () => {
                 </p>
                 <div className="text-center">
                   <Link to="/products">
-                    <Button 
-                      size="lg" 
-                      className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105"
-                    >
+                    <Button size="lg" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105">
                       Explore Superlens.ai <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
@@ -215,22 +230,13 @@ const Index = () => {
             <div className="flex justify-center mb-16">
               <Tabs defaultValue="overview" className="w-full max-w-5xl">
                 <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 bg-black/40 backdrop-blur-md border border-purple-500/20">
-                  <TabsTrigger 
-                    value="overview" 
-                    className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
-                  >
+                  <TabsTrigger value="overview" className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white">
                     Overview
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="user-metrics" 
-                    className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
-                  >
+                  <TabsTrigger value="user-metrics" className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white">
                     User Metrics
                   </TabsTrigger>
-                  <TabsTrigger 
-                    value="performance" 
-                    className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white"
-                  >
+                  <TabsTrigger value="performance" className="text-purple-200 data-[state=active]:bg-purple-600 data-[state=active]:text-white">
                     Performance
                   </TabsTrigger>
                 </TabsList>
@@ -238,11 +244,7 @@ const Index = () => {
                 {/* Overview Tab Content */}
                 <TabsContent value="overview" className="mt-12">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {dashboardMetrics.map((metric, index) => (
-                      <Card 
-                        key={index}
-                        className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50"
-                      >
+                    {dashboardMetrics.map((metric, index) => <Card key={index} className="group hover:shadow-xl hover:shadow-purple-500/20 transition-all duration-300 transform hover:-translate-y-2 bg-black/40 backdrop-blur-md border border-purple-500/20 hover:border-purple-400/50">
                         <CardContent className="p-8">
                           <div className="space-y-6">
                             <div>
@@ -250,19 +252,14 @@ const Index = () => {
                               <div className="text-4xl font-bold text-purple-100 mb-2">{metric.value}</div>
                             </div>
                             <div className="flex items-center space-x-2">
-                              {metric.isPositive ? (
-                                <TrendingUp className="h-5 w-5 text-green-400" />
-                              ) : (
-                                <TrendingDown className="h-5 w-5 text-red-400" />
-                              )}
+                              {metric.isPositive ? <TrendingUp className="h-5 w-5 text-green-400" /> : <TrendingDown className="h-5 w-5 text-red-400" />}
                               <span className={`text-base font-medium ${metric.isPositive ? 'text-green-400' : 'text-red-400'}`}>
                                 {metric.isPositive ? '↑' : '↓'} {metric.change}% {metric.period}
                               </span>
                             </div>
                           </div>
                         </CardContent>
-                      </Card>
-                    ))}
+                      </Card>)}
                   </div>
                 </TabsContent>
 
@@ -272,38 +269,33 @@ const Index = () => {
                     {/* User Demographics */}
                     <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
                       <CardContent className="p-8">
-                        <h4 className="text-3xl font-bold text-purple-100 mb-8">User Demographics</h4>
+                        <h4 className="font-bold text-purple-100 mb-8 text-lg">User Demographics</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                           {/* Age Range */}
                           <div>
-                            <h5 className="text-xl font-semibold text-purple-300 mb-6">Age Range</h5>
+                            <h5 className="font-semibold text-purple-300 mb-6 text-sm">Age Range</h5>
                             <div className="space-y-5">
-                              {userDemographics.ageRanges.map((age, index) => (
-                                <div key={index} className="flex justify-between items-center">
-                                  <span className="text-lg text-purple-200">{age.range}</span>
+                              {userDemographics.ageRanges.map((age, index) => <div key={index} className="flex justify-between items-center">
+                                  <span className="text-g text-purple-100 text-sm">{age.range}</span>
                                   <div className="flex items-center space-x-3">
                                     <div className="w-20 h-3 bg-purple-900/40 rounded-full overflow-hidden">
-                                      <div 
-                                        className="h-full bg-purple-500 rounded-full transition-all duration-500"
-                                        style={{ width: `${age.percentage}%` }}
-                                      />
+                                      <div className="h-full bg-purple-500 rounded-full transition-all duration-500" style={{
+                                    width: `${age.percentage}%`
+                                  }} />
                                     </div>
                                     <span className="text-purple-300 text-base font-medium min-w-[3rem]">{age.percentage}%</span>
                                   </div>
-                                </div>
-                              ))}
+                                </div>)}
                             </div>
                           </div>
                           {/* Top Regions */}
                           <div>
-                            <h5 className="text-xl font-semibold text-purple-300 mb-6">Top Regions</h5>
+                            <h5 className="font-semibold text-purple-300 mb-6 text-sm">Top Regions</h5>
                             <div className="space-y-5">
-                              {userDemographics.topRegions.map((region, index) => (
-                                <div key={index} className="flex justify-between items-center">
-                                  <span className="text-lg text-purple-200">{region.region}</span>
+                              {userDemographics.topRegions.map((region, index) => <div key={index} className="flex justify-between items-center">
+                                  <span className="text-purple-200 text-sm">{region.region}</span>
                                   <span className="text-purple-300 text-base font-medium">{region.percentage}%</span>
-                                </div>
-                              ))}
+                                </div>)}
                             </div>
                           </div>
                         </div>
@@ -313,17 +305,14 @@ const Index = () => {
                     {/* User Growth Chart */}
                     <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
                       <CardContent className="p-8">
-                        <h4 className="text-3xl font-bold text-purple-100 mb-8">User Growth</h4>
+                        <h4 className="font-bold text-purple-100 mb-8 text-base">User Growth</h4>
                         <div className="flex items-end justify-between h-64 space-x-3">
-                          {userGrowthData.map((data, index) => (
-                            <div key={index} className="flex flex-col items-center space-y-3 flex-1">
-                              <div 
-                                className="w-full bg-purple-500 rounded-t transition-all duration-500 hover:bg-purple-400 min-w-[3rem]"
-                                style={{ height: `${data.value}%` }}
-                              />
+                          {userGrowthData.map((data, index) => <div key={index} className="flex flex-col items-center space-y-3 flex-1">
+                              <div className="w-full bg-purple-500 rounded-t transition-all duration-500 hover:bg-purple-400 min-w-[3rem]" style={{
+                            height: `${data.value}%`
+                          }} />
                               <span className="text-purple-300 text-base font-medium">{data.month}</span>
-                            </div>
-                          ))}
+                            </div>)}
                         </div>
                       </CardContent>
                     </Card>
@@ -334,27 +323,18 @@ const Index = () => {
                 <TabsContent value="performance" className="mt-12">
                   {/* Performance Metrics */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                    {performanceMetrics.map((metric, index) => (
-                      <Card 
-                        key={index}
-                        className="bg-black/40 backdrop-blur-md border border-purple-500/20"
-                      >
+                    {performanceMetrics.map((metric, index) => <Card key={index} className="bg-black/40 backdrop-blur-md border border-purple-500/20">
                         <CardContent className="p-8">
                           <h4 className="text-xl font-semibold text-purple-300 mb-4">{metric.title}</h4>
                           <div className="text-4xl font-bold text-purple-100 mb-4">{metric.value}</div>
                           <div className="flex items-center space-x-2">
-                            {metric.isPositive ? (
-                              <TrendingUp className="h-5 w-5 text-green-400" />
-                            ) : (
-                              <TrendingDown className="h-5 w-5 text-red-400" />
-                            )}
+                            {metric.isPositive ? <TrendingUp className="h-5 w-5 text-green-400" /> : <TrendingDown className="h-5 w-5 text-red-400" />}
                             <span className={`text-base font-medium ${metric.isPositive ? 'text-green-400' : 'text-red-400'}`}>
                               {metric.isPositive ? '↑' : '↓'} {metric.change}% {metric.period}
                             </span>
                           </div>
                         </CardContent>
-                      </Card>
-                    ))}
+                      </Card>)}
                   </div>
 
                   {/* System Health */}
@@ -362,8 +342,7 @@ const Index = () => {
                     <CardContent className="p-8">
                       <h4 className="text-3xl font-bold text-purple-100 mb-8">System Health</h4>
                       <div className="space-y-8">
-                        {systemHealth.map((system, index) => (
-                          <div key={index} className="space-y-3">
+                        {systemHealth.map((system, index) => <div key={index} className="space-y-3">
                             <div className="flex justify-between items-center">
                               <span className="text-xl text-purple-200 font-medium">{system.name}</span>
                               <div className="flex items-center space-x-4">
@@ -373,12 +352,8 @@ const Index = () => {
                                 <span className="text-purple-300 text-lg font-medium min-w-[4rem] text-right">{system.percentage}%</span>
                               </div>
                             </div>
-                            <Progress 
-                              value={system.percentage} 
-                              className="h-4 bg-purple-900/40"
-                            />
-                          </div>
-                        ))}
+                            <Progress value={system.percentage} className="h-4 bg-purple-900/40" />
+                          </div>)}
                       </div>
                     </CardContent>
                   </Card>
@@ -489,10 +464,7 @@ const Index = () => {
               Discover how NexFab can optimize your data infrastructure and drive actionable insights for your business. Let's embark on a journey of data-driven success together.
             </p>
             <Link to="/products">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105"
-              >
+              <Button size="lg" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105">
                 Get Started <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
@@ -537,8 +509,6 @@ const Index = () => {
           </div>
         </footer>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
