@@ -325,11 +325,11 @@ const Index = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
                     {performanceMetrics.map((metric, index) => <Card key={index} className="bg-black/40 backdrop-blur-md border border-purple-500/20">
                         <CardContent className="p-8">
-                          <h4 className="text-xl font-semibold text-purple-300 mb-4">{metric.title}</h4>
-                          <div className="text-4xl font-bold text-purple-100 mb-4">{metric.value}</div>
+                          <h4 className="font-semibold text-purple-300 mb-4 text-base">{metric.title}</h4>
+                          <div className="text-xl font-bold text-purple-100 mb-4">{metric.value}</div>
                           <div className="flex items-center space-x-2">
                             {metric.isPositive ? <TrendingUp className="h-5 w-5 text-green-400" /> : <TrendingDown className="h-5 w-5 text-red-400" />}
-                            <span className={`text-base font-medium ${metric.isPositive ? 'text-green-400' : 'text-red-400'}`}>
+                            <span className="">
                               {metric.isPositive ? '↑' : '↓'} {metric.change}% {metric.period}
                             </span>
                           </div>
@@ -340,13 +340,13 @@ const Index = () => {
                   {/* System Health */}
                   <Card className="bg-black/40 backdrop-blur-md border border-purple-500/20">
                     <CardContent className="p-8">
-                      <h4 className="text-3xl font-bold text-purple-100 mb-8">System Health</h4>
+                      <h4 className="font-bold text-purple-100 mb-8 text-lg">System Health</h4>
                       <div className="space-y-8">
                         {systemHealth.map((system, index) => <div key={index} className="space-y-3">
                             <div className="flex justify-between items-center">
-                              <span className="text-xl text-purple-200 font-medium">{system.name}</span>
+                              <span className="text-purple-200 font-medium text-base">{system.name}</span>
                               <div className="flex items-center space-x-4">
-                                <span className={`text-base font-medium px-3 py-1 rounded-full ${system.status === 'Normal' ? 'text-green-400 bg-green-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>
+                                <span className="">
                                   {system.status}
                                 </span>
                                 <span className="text-purple-300 text-lg font-medium min-w-[4rem] text-right">{system.percentage}%</span>
