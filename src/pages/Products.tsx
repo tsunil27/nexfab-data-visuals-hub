@@ -6,6 +6,7 @@ import ProductsDecisionMaking from "@/components/products/ProductsDecisionMaking
 import ProductsPerformance from "@/components/products/ProductsPerformance";
 import ProductsFeatures from "@/components/products/ProductsFeatures";
 import ProductsBenefits from "@/components/products/ProductsBenefits";
+import ProductsChatDemo from "@/components/products/ProductsChatDemo";
 import ProductsCTA from "@/components/products/ProductsCTA";
 import ProductsFooter from "@/components/products/ProductsFooter";
 
@@ -35,6 +36,7 @@ const Products = () => {
           </div>
         </section>
 
+        <ProductsChatDemo />
         <ProductsPerformance />
         <ProductsFeatures />
         <ProductsBenefits />
