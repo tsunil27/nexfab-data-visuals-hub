@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell } from 'recharts';
 
@@ -39,10 +38,10 @@ const ProductsChatDemo = () => {
   ];
 
   const funnelData = [
-    { stage: 'Awareness', visitors: 12000, color: '#FF6B35' },
-    { stage: 'Interest', visitors: 8500, color: '#B388FF' },
-    { stage: 'Consideration', visitors: 4200, color: '#00E5FF' },
-    { stage: 'Purchase', visitors: 1800, color: '#4CAF50' },
+    { stage: 'Awareness', visitors: 12000, color: '#3B82F6' },
+    { stage: 'Interest', visitors: 8500, color: '#1E40AF' },
+    { stage: 'Consideration', visitors: 4200, color: '#1D4ED8' },
+    { stage: 'Purchase', visitors: 1800, color: '#2563EB' },
   ];
 
   useEffect(() => {
@@ -98,7 +97,7 @@ const ProductsChatDemo = () => {
       {[0, 1, 2].map((i) => (
         <div
           key={i}
-          className="w-2 h-2 bg-purple-400 rounded-full"
+          className="w-2 h-2 bg-blue-600 rounded-full"
           style={{
             animation: `pulse 1.4s ease-in-out ${i * 0.2}s infinite`,
           }}
@@ -112,7 +111,7 @@ const ProductsChatDemo = () => {
       {Array.from({ length: 20 }).map((_, i) => (
         <div
           key={i}
-          className="absolute w-1 h-1 bg-purple-400 rounded-full animate-ping"
+          className="absolute w-1 h-1 bg-blue-400 rounded-full animate-ping"
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -136,26 +135,26 @@ const ProductsChatDemo = () => {
   );
 
   return (
-    <section className="py-20 bg-gradient-to-br from-purple-950/80 to-black/90 backdrop-blur-sm overflow-hidden relative">
+    <section className="py-20 bg-gradient-to-br from-blue-50 to-white backdrop-blur-sm overflow-hidden relative">
       {showParticles && <ParticleEffect />}
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-purple-100 mb-4 animate-fade-in">
+          <h2 className="text-4xl font-bold text-blue-900 mb-4 animate-fade-in">
             Experience SuperLens AI in Action
           </h2>
-          <p className="text-xl text-purple-300 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <p className="text-xl text-blue-700 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             Watch how our AI transforms complex queries into actionable insights
           </p>
         </div>
 
         {/* Chat Interface Container */}
-        <div className="max-w-4xl mx-auto bg-black/60 backdrop-blur-md rounded-2xl border border-purple-500/30 shadow-2xl overflow-hidden relative animate-scale-in">
+        <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-md rounded-2xl border border-blue-200 shadow-2xl overflow-hidden relative animate-scale-in">
           {/* Glow Effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 blur-xl -z-10 animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-100/30 to-blue-200/30 blur-xl -z-10 animate-pulse" />
           
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-900/50 to-purple-800/50 px-6 py-4 border-b border-purple-500/20 relative">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 border-b border-blue-300/20 relative">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="flex space-x-2">
@@ -163,7 +162,7 @@ const ProductsChatDemo = () => {
                   <div className="w-3 h-3 bg-yellow-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                 </div>
-                <h3 className="text-purple-100 font-semibold">SuperLens AI Platform</h3>
+                <h3 className="text-white font-semibold">SuperLens AI Platform</h3>
               </div>
               
               {/* NexFab Logo with Glow */}
@@ -189,13 +188,13 @@ const ProductsChatDemo = () => {
                 <div
                   className={`max-w-[80%] p-4 rounded-2xl relative ${
                     scene.type === 'user'
-                      ? 'bg-gradient-to-r from-purple-600 to-purple-500 text-white shadow-lg shadow-purple-500/25'
-                      : 'bg-gradient-to-r from-indigo-900/80 to-purple-900/60 text-purple-100 border border-purple-400/30 shadow-lg'
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25'
+                      : 'bg-gradient-to-r from-gray-100 to-blue-50 text-blue-900 border border-blue-200 shadow-lg'
                   }`}
                 >
                   {/* Message glow effect */}
                   <div className={`absolute inset-0 rounded-2xl blur-sm -z-10 ${
-                    scene.type === 'user' ? 'bg-purple-500/30' : 'bg-indigo-500/20'
+                    scene.type === 'user' ? 'bg-blue-500/30' : 'bg-blue-100/50'
                   }`} />
                   
                   <div className="flex items-center relative z-10">
@@ -203,7 +202,7 @@ const ProductsChatDemo = () => {
                       <>
                         <span className="font-medium">{typingText}</span>
                         {scene.showDots && <TypingDots />}
-                        <span className="ml-1 w-0.5 h-5 bg-purple-300 animate-pulse" />
+                        <span className="ml-1 w-0.5 h-5 bg-blue-600 animate-pulse" />
                       </>
                     ) : (
                       <span className="font-medium">{scene.text}</span>
@@ -213,26 +212,26 @@ const ProductsChatDemo = () => {
                   {/* Graph Display */}
                   {scene.showGraph && showGraph && (
                     <div 
-                      className="mt-4 bg-black/40 rounded-xl p-4 border border-purple-400/20 relative overflow-hidden"
+                      className="mt-4 bg-white/80 rounded-xl p-4 border border-blue-200 relative overflow-hidden"
                       style={{
                         animation: graphAnimation ? 'scaleIn 0.8s ease-out 0.3s both' : 'none',
                       }}
                     >
                       {/* Graph glow effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-xl animate-pulse" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-blue-100/50 rounded-xl animate-pulse" />
                       
-                      <h4 className="text-purple-200 font-semibold mb-3 relative z-10">Q4 Customer Acquisition Funnel</h4>
+                      <h4 className="text-blue-800 font-semibold mb-3 relative z-10">Q4 Customer Acquisition Funnel</h4>
                       <div className="h-64 relative z-10">
                         <ResponsiveContainer width="100%" height="100%">
                           <BarChart data={funnelData}>
                             <XAxis 
                               dataKey="stage" 
-                              tick={{ fill: '#C4B5FD', fontSize: 12 }}
-                              axisLine={{ stroke: '#7C3AED' }}
+                              tick={{ fill: '#1E40AF', fontSize: 12 }}
+                              axisLine={{ stroke: '#3B82F6' }}
                             />
                             <YAxis 
-                              tick={{ fill: '#C4B5FD', fontSize: 12 }}
-                              axisLine={{ stroke: '#7C3AED' }}
+                              tick={{ fill: '#1E40AF', fontSize: 12 }}
+                              axisLine={{ stroke: '#3B82F6' }}
                             />
                             <Bar dataKey="visitors" radius={[4, 4, 0, 0]}>
                               {funnelData.map((entry, index) => (
@@ -249,11 +248,11 @@ const ProductsChatDemo = () => {
                         </ResponsiveContainer>
                       </div>
                       <div className="mt-3 grid grid-cols-2 gap-4 text-sm relative z-10">
-                        <div className="text-purple-300 animate-fade-in" style={{ animationDelay: '1.2s' }}>
-                          <span className="text-orange-400 font-bold">↗ 23%</span> conversion improvement
+                        <div className="text-blue-700 animate-fade-in" style={{ animationDelay: '1.2s' }}>
+                          <span className="text-orange-500 font-bold">↗ 23%</span> conversion improvement
                         </div>
-                        <div className="text-purple-300 animate-fade-in" style={{ animationDelay: '1.4s' }}>
-                          <span className="text-green-400 font-bold">1,800</span> total conversions
+                        <div className="text-blue-700 animate-fade-in" style={{ animationDelay: '1.4s' }}>
+                          <span className="text-green-600 font-bold">1,800</span> total conversions
                         </div>
                       </div>
                     </div>
@@ -264,18 +263,18 @@ const ProductsChatDemo = () => {
           </div>
 
           {/* Input Area */}
-          <div className="px-6 py-4 border-t border-purple-500/20 bg-gradient-to-r from-purple-950/30 to-black/30 relative">
+          <div className="px-6 py-4 border-t border-blue-200 bg-gradient-to-r from-blue-50 to-white relative">
             <div className="flex items-center space-x-3">
-              <div className="flex-1 bg-purple-900/20 border border-purple-400/30 rounded-full px-4 py-3 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 animate-pulse" />
+              <div className="flex-1 bg-blue-50 border border-blue-200 rounded-full px-4 py-3 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-100/50 to-blue-50/50 animate-pulse" />
                 <input 
                   type="text" 
                   placeholder="Ask SuperLens AI anything about your data..."
-                  className="w-full bg-transparent text-purple-200 placeholder-purple-400 focus:outline-none relative z-10"
+                  className="w-full bg-transparent text-blue-800 placeholder-blue-500 focus:outline-none relative z-10"
                   readOnly
                 />
               </div>
-              <button className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/25 relative overflow-hidden group">
+              <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white p-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-blue-500/25 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -294,7 +293,7 @@ const ProductsChatDemo = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes slideIn {
           from {
             opacity: 0;
