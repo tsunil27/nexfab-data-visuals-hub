@@ -2,21 +2,30 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
-import { ArrowRight, Cloud, Code, Database, Users, ChevronRight, Zap, TrendingUp, TrendingDown } from "lucide-react";
+import { ArrowRight, Cloud, Code, Database, Users, ChevronRight, Zap, TrendingUp, TrendingDown, LogIn } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 import ClientLogos from "@/components/ClientLogos";
+import LoginDialog from "@/components/auth/LoginDialog";
+import UserProfile from "@/components/auth/UserProfile";
+
 const Index = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [loginDialogOpen, setLoginDialogOpen] = useState(false);
+  const { currentUser } = useAuth();
+
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
       behavior: 'smooth'
     });
   };
+
   const dashboardMetrics = [{
     title: "Total Users",
     value: "24.5K",
@@ -157,9 +166,22 @@ const Index = () => {
                 <button onClick={() => scrollToSection('contact')} className="text-purple-200 hover:text-purple-300 transition-colors duration-200">
                   Contact
                 </button>
-                <Link to="/products" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105">
-                  Get Started
-                </Link>
+                {currentUser ? (
+                  <div className="flex items-center space-x-4">
+                    <span className="text-purple-300">Welcome, {currentUser.displayName || 'User'}</span>
+                    <Link to="/products" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105">
+                      Dashboard
+                    </Link>
+                  </div>
+                ) : (
+                  <Button
+                    onClick={() => setLoginDialogOpen(true)}
+                    className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105"
+                  >
+                    <LogIn className="mr-2 h-4 w-4" />
+                    Login
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -182,11 +204,35 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-purple-300 mb-8 max-w-3xl mx-auto">
               Unlock the Power of Data & AI for Informed Business Decisions
             </p>
-            <Button onClick={() => scrollToSection('featured-product')} size="lg" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105">
-              Discover More <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button onClick={() => scrollToSection('featured-product')} size="lg" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105">
+                Discover More <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              {!currentUser && (
+                <Button
+                  onClick={() => setLoginDialogOpen(true)}
+                  variant="outline"
+                  size="lg"
+                  className="border-purple-400 text-purple-300 hover:bg-purple-900/20 px-8 py-4 text-lg rounded-full transition-all duration-300"
+                >
+                  <LogIn className="mr-2 h-5 w-5" />
+                  Get Started
+                </Button>
+              )}
+            </div>
           </div>
         </section>
+
+        {/* User Profile Section - Show when logged in */}
+        {currentUser && (
+          <section className="py-12 bg-gradient-to-br from-purple-950/80 to-black/80 backdrop-blur-sm">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-center">
+                <UserProfile />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Featured Product Section */}
         <section id="featured-product" className="py-20 bg-gradient-to-br from-purple-950/80 to-black/80 backdrop-blur-sm">
@@ -509,6 +555,10 @@ const Index = () => {
           </div>
         </footer>
       </main>
+
+      {/* Login Dialog */}
+      <LoginDialog open={loginDialogOpen} onOpenChange={setLoginDialogOpen} />
     </div>;
 };
+
 export default Index;
