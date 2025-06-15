@@ -2,15 +2,17 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { getAnalytics } from "firebase/analytics";
 
-// Firebase configuration
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY_HERE",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBPyfxppji6rTzA9m-RVx3UG6YDx56Rrv8",
+  authDomain: "authtest-4896d.firebaseapp.com",
+  projectId: "authtest-4896d",
+  storageBucket: "authtest-4896d.firebasestorage.app",
+  messagingSenderId: "626997879888",
+  appId: "1:626997879888:web:01b7b596892d9ae2f21d55",
+  measurementId: "G-WCVPFYFGC3"
 };
 
 // Initialize Firebase
@@ -21,6 +23,9 @@ export const auth = getAuth(app);
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
+
+// Initialize Analytics
+export const analytics = getAnalytics(app);
 
 // Google Auth Provider
 const googleProvider = new GoogleAuthProvider();
